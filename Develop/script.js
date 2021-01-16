@@ -12,7 +12,7 @@
 
 
 
-
+// GLOBAL VARIABLES
 // display current time/date in header
 $("#currentDay").append(moment().format("LLLL"));
 
@@ -20,6 +20,10 @@ $("#currentDay").append(moment().format("LLLL"));
 let currentTime = moment().hour();
 console.log(currentTime);
 
+let saveEntry = "";
+
+
+// FUNCTIONS
 // for each description class, run this function to color-coordinate blocks
 $(".description").each(function () {
   var refTime = $(this).attr("data-hour");
@@ -32,6 +36,31 @@ $(".description").each(function () {
     $(this).addClass("past");
   };
 });
+
+// let blockTest = document.getElementsByClassName("description");
+
+// save entry to local storage
+$(".saveBtn").on("click", function() {
+  // console.log("click");
+  
+
+  saveEntry = $(this)
+    .siblings(".description")
+    .val();
+  // console.log(saveEntry);
+
+  let timeEntry = $(this)
+    .siblings(".hour")
+    .attr("id");
+    
+  // console.dir(blockTest);
+
+
+  localStorage.setItem(timeEntry, saveEntry);
+
+});
+
+
 
 
 
