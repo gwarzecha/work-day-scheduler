@@ -1,16 +1,5 @@
-
-
-
-
-// color-code each time block to indicate whether it is past/present/future
-// do this by adding class/removing class if after a time
-// create a time variable to set this in reference to (use moment.js)
-// this can all be housed within the same function
 // after entering an event and clicking the save icon, save it in local storage
-// ensure that the saved events presist when the page is refreshed
-
-
-
+// ensure that the saved events persist when the page is refreshed
 
 // GLOBAL VARIABLES
 // display current time/date in header
@@ -22,18 +11,22 @@ console.log(currentTime);
 
 let saveEntry = "";
 
-
 // FUNCTIONS
 // for each description class, run this function to color-coordinate blocks
-$(".description").each(function () {
-  var refTime = $(this).attr("data-hour");
+$(".time-block").each(function() {
+  let timeEntryId = $(this).find(".hour").attr("id");
+  //console.log(timeEntryId);
+  let timeDesc = localStorage.getItem(timeEntryId)
+  $(this).find(".description").val(timeDesc);
+
+  var refTime = $(this).find(".description").attr("data-hour");
 
   if (refTime > currentTime) {
-    $(this).addClass("future");
+    $(this).find(".description").addClass("future");
   } else if (refTime == currentTime) {
-    $(this).addClass("present");
+    $(this).find(".description").addClass("present");
   } else if (refTime < currentTime) {
-    $(this).addClass("past");
+    $(this).find(".description").addClass("past");
   };
 });
 
@@ -43,7 +36,6 @@ $(".description").each(function () {
 $(".saveBtn").on("click", function() {
   // console.log("click");
   
-
   saveEntry = $(this)
     .siblings(".description")
     .val();
@@ -54,7 +46,6 @@ $(".saveBtn").on("click", function() {
     .attr("id");
     
   // console.dir(blockTest);
-
 
   localStorage.setItem(timeEntry, saveEntry);
 
