@@ -5,7 +5,6 @@ $("#currentDay").append(moment().format("LLLL"));
 
 // set current date/time for reference in blocks
 let currentTime = moment().hour();
-console.log(currentTime);
 
 let saveEntry = "";
 
@@ -13,7 +12,6 @@ let saveEntry = "";
 // recall entries from local storage
 $(".time-block").each(function() {
   let timeEntryId = $(this).find(".hour").attr("id");
-  //console.log(timeEntryId);
   let timeDesc = localStorage.getItem(timeEntryId);
   $(this).find(".description").val(timeDesc);
 
@@ -29,7 +27,6 @@ $(".time-block").each(function() {
   };
 });
 
-// let blockTest = document.getElementsByClassName("description");
 
 // save entry to local storage
 $(".saveBtn").on("click", function() {
@@ -44,10 +41,7 @@ $(".saveBtn").on("click", function() {
     .siblings(".hour")
     .attr("id");
     
-  // console.dir(blockTest);
-
   localStorage.setItem(timeEntry, saveEntry);
-
 });
 
 
