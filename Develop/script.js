@@ -1,5 +1,3 @@
-// after entering an event and clicking the save icon, save it in local storage
-// ensure that the saved events persist when the page is refreshed
 
 // GLOBAL VARIABLES
 // display current time/date in header
@@ -12,15 +10,16 @@ console.log(currentTime);
 let saveEntry = "";
 
 // FUNCTIONS
-// for each description class, run this function to color-coordinate blocks
+// recall entries from local storage
 $(".time-block").each(function() {
   let timeEntryId = $(this).find(".hour").attr("id");
   //console.log(timeEntryId);
-  let timeDesc = localStorage.getItem(timeEntryId)
+  let timeDesc = localStorage.getItem(timeEntryId);
   $(this).find(".description").val(timeDesc);
 
   var refTime = $(this).find(".description").attr("data-hour");
 
+  // for each description class, run this function to color-coordinate blocks
   if (refTime > currentTime) {
     $(this).find(".description").addClass("future");
   } else if (refTime == currentTime) {
